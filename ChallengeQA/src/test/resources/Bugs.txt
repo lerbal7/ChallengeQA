@@ -1,0 +1,44 @@
+BUG 1
+Error: When on responsive mode and clicking on the Edit button, the website scrolls to the top, but the textarea to edit the item is at the bottom of the page.
+
+Expected result: When on responsive, I click on the Edit button and the website scrolls down to the textarea so I can edit the text.
+Actual result: When on responsive, the website does not scroll to the textarea. I have to manually scroll to the textarea and edit the text.
+
+Test case
+Precondition
+* The user is in responsive mode
+
+Steps
+1. Go to the main website.
+2. Click on the Edit button on any of the first items on the list.
+
+BUG 2
+Error: When clicking on Edit button and then deleting that item, if I click on Update Item the item gets created again.
+
+Expected result: When I click on Edit button and then delete the item, the textarea should empty because the item does not exist anymore.
+Actual result: When I click on Edit button and then delete the item, the textarea still has the description of the deleted item and by clicking on Update Item, it gets created again.
+
+Test case
+
+Steps
+1. Go to the main website.
+2. Click on the Edit button.
+3. Click on the Delete button of the same element.
+4. Confirm the deletion.
+5. Change the description of the item just deleted.
+6. Click on Update Item.
+
+BUG 3
+Error: The uploaded file remains uploaded even when the item has already been created.
+
+Expected result: When I upload the file and add some description and I click on Create Item, the item is added and the file should be emptied, just like the textarea does after creating the item.
+Actual result: When the element is created, the textarea is emptied but the file remains there until I click on the button to upload a new one.
+
+Test case
+
+Steps
+1. Go to the main website.
+2. Upload a file.
+3. Add some description.
+4. Click on Create Item.
+5. Check the file and textarea.
