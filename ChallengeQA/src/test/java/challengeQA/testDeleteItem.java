@@ -16,39 +16,29 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import junit.framework.Assert;
 
-public class testDeleteItem {
-
-	private WebDriver driver;
-	private String baseUrl = "http://immense-hollows-74271.herokuapp.com/";
+public class testDeleteItem extends base {
 
 	@Before
 	public void setUp() throws Exception {
-		System.setProperty("webdriver.chrome.driver", "./src/test/resources/chromedriver/chromedriver.exe");
-		driver = new ChromeDriver();
-		Dimension dimension = new Dimension(384, 854);
-		
-		// Comment these two lines alternatively to see the test run for mobile / desktop dimensions
-		//driver.manage().window().maximize(); 
-		driver.manage().window().setSize(dimension);
-		driver.get(baseUrl);
+		super.setUp();
 	}
 	
 	@Test
 	public void testDelete() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+		WebDriverWait wait = new WebDriverWait(super.getDriver(), Duration.ofSeconds(2));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@ng-model='items']"))); // Wait for the list of items to be visible
 		
-		WebElement desc = driver.findElement(By.xpath("//*[contains(text(), 'This is an image')]"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", desc);
+		WebElement desc = super.getDriver().findElement(By.xpath("//*[contains(text(), 'This is an image')]"));
+		((JavascriptExecutor) super.getDriver()).executeScript("arguments[0].scrollIntoView(true);", desc);
 		
 		Thread.sleep(2000);
 		
-		driver.findElement(By.xpath("/html/body/div[2]/div[1]/div/ul/li[last()]/div/div/div[1]/button[2]")).click(); // Click on Delete button of the last element
-		driver.findElement(By.xpath("//button[text()='Yes, delete it!']")).click(); // Confirm that I want to delete the element
+		super.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/div/ul/li[last()]/div/div/div[1]/button[2]")).click(); // Click on Delete button of the last element
+		super.getDriver().findElement(By.xpath("//button[text()='Yes, delete it!']")).click(); // Confirm that I want to delete the element
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		driver.quit();
+		super.tearDown();
 	}
 }
